@@ -29,6 +29,13 @@ will need something like the following
 With this setup, authentication calls will get routed to the
 `auth' database.
 
+## Issues
+
+Under some circumstances, the use of this authentication model breaks the use of tools
+that expect a standard setup. In particular you may have trouble using `South',
+or running `python manage.py syncdb'. This is due to problems with foreign keys
+spanning multiple databases.
+
 ## Attribution
 
 The code was plucked out of a forum
