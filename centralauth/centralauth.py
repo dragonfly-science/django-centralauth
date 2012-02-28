@@ -2,7 +2,11 @@ from django.db import connections
 from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.conf import settings
+
+try:
+    from django.conf import settings
+except ImportError:
+    settings = {'REQUIRED_PERMISSIONS':[], 'AUTHENTICATION_DATABASE': 'default'}
 
 # will use the AUTHENTICATION_DATABASE settings if available
 
