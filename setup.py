@@ -1,9 +1,10 @@
 from distutils.core import setup
 setup(name              = 'django-centralauth',
-        version         = '0.1',
-        description     = 'Django support for a seperate authentication database',
-        url             = 'https://github.com/dragonfly-science/django-authrouter.git',
-        packages        = ['centralauth',],
-        py_modules      = ['centralauth.centralauth', 'centralauth.authrouter']
+    version         = '0.1',
+    description     = 'Django support for a seperate authentication database',
+    author          = 'Finlay Thompson',
+    author_email    = 'finlay@dragonfly.co.nz',
+    url             = 'http://github.com/dragonfly-science/django-centralauth',
+    packages        = ['centralauth',],
 )
 
