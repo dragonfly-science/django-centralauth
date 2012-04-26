@@ -1,1 +1,1 @@
-__all__ = ['centralauth', 'authrouter']
+__all__ = ['centralauth', 'routers']
