@@ -32,7 +32,7 @@ class ModelBackend(object):
     """
     supports_object_permissions = False
     supports_anonymous_user = True
-    supports_inactive_user = false
+    supports_inactive_user = False
 
     # TODO: Model, login attribute name and password attribute name should be
     # configurable.
