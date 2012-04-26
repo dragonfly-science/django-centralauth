@@ -1,14 +1,12 @@
 from django.db import connections
+import re
+import logging
+
 from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.conf import settings
 
-try:
-    from django.conf import settings
-except ImportError:
-    settings = {'REQUIRED_PERMISSIONS':[], 'AUTHENTICATION_DATABASE': 'default'}
-
-# will use the AUTHENTICATION_DATABASE settings if available
 
 # Middleware to ensure authenticated users have the correct permissions
 required_permissions = settings.REQUIRED_PERMISSIONS or []
@@ -20,6 +18,9 @@ class RequiredPermissions:
         if 'logout' in request.path:
             return None
         perms = request.user.get_all_permissions()
+        for req in required_permissions:
+            if any([re.search(req,p) for p in perms]):
+                return None
         if perms.intersection(set(required_permissions)):
             return None
         return render_to_response('not_allowed.html', dict(),
@@ -31,6 +32,7 @@ class ModelBackend(object):
     """
     supports_object_permissions = False
     supports_anonymous_user = True
+    supports_inactive_user = false
 
     # TODO: Model, login attribute name and password attribute name should be
     # configurable.
